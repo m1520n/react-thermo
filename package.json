@@ -1,25 +1,31 @@
 {
   "name": "react-thermo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React thermometer component",
-  "main": "src/index.js",
+  "main": "build/index.js",
   "repository": "git@github.com:m1520n/react-thermo.git",
   "author": "Michał Winiarski <michal.winiarski@devbrains.pl>",
   "license": "MIT",
   "dependencies": {
-    "react": "^16.11.0"
+    "react": "^16.11.0",
+    "webpack": "^4.41.2"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/preset-env": "^7.6.3",
     "@storybook/addon-actions": "^5.2.5",
     "@storybook/addon-links": "^5.2.5",
     "@storybook/addons": "^5.2.5",
     "@storybook/react": "^5.2.5",
     "babel-loader": "^8.0.6",
-    "storybook": "^5.1.11"
+    "storybook": "^5.1.11",
+    "webpack-cli": "^3.3.10"
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "build": "webpack"
   }
 }
