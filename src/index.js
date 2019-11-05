@@ -80,7 +80,7 @@ const styles = {
 };
 
 const Thermometer = ({
-  temperature = 20,
+  temperature,
   min = -50,
   max = 50,
   zones = [0, 25],
