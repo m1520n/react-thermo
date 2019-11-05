@@ -5,6 +5,8 @@
 
 > React Thermometer Component for React Apps
 
+![React Thermo](https://github.com/m1520n/react-thermo/thermo.png)
+
 ## Install
 
 ```sh
