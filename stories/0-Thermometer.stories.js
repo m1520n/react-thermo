@@ -9,19 +9,13 @@ export default {
 export const thermo = () => (
   <div style={{ display: 'flex' }}>
     <Thermometer
-      temperature={10}
-      base={0}
-      zones={[20, 24]}
+      temperature={-20}
     />
     <Thermometer
-      temperature={30}
-      base={0}
-      zones={[20, 40]}
+      temperature={20}
     />
     <Thermometer
-      temperature={60}
-      base={0}
-      zones={[10, 40]}
+      temperature={35}
     />
   </div>
 );

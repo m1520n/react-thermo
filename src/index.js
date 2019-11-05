@@ -1,7 +1,7 @@
 import React from 'react';
 import { relative } from 'path';
 
-const getMercuryColor = (t, zones, colors = ['#3498db', '#e67e22', '#c0392b']) => {
+const getMercuryColor = (t, zones, colors) => {
   const [lowColor, mediumColor, hightColor] = colors;
   const [low, high] = zones;
   if (t < low) return lowColor;
@@ -11,81 +11,100 @@ const getMercuryColor = (t, zones, colors = ['#3498db', '#e67e22', '#c0392b']) =
 
 const styles = {
   thermometerWrapper: {
-    display: 'flex',
     position: 'relative',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 140,
     width: 40,
+    height: 130,
     margin: 5,
+    textAlign: 'center',
   },
   thermometerTop: {
     position: 'absolute',
-    height: 100,
     width: 20,
+    height: 100,
     top: 0,
-    backgroundColor: '#bdc3c7',
-    borderRadius: 10,
+    left: 0,
+    right: 0,
+    borderRadius: '10px 10px 0 0',
+    margin: '0 auto',
   },
   mercuryPipe: {
     position: 'absolute',
-    height: 100,
     width: 10,
-    backgroundColor: '#ecf0f1',
-    borderRadius: 10,
+    height: 100,
+    left: 0,
+    right: 0,
     top: 5,
+    borderRadius: 10,
+    margin: '0 auto',
   },
   thermometerBottom: {
     position: 'absolute',
-    height: 40,
     width: 40,
-    backgroundColor: '#bdc3c7',
-    borderRadius: 20,
+    height: 40,
+    left: 0,
+    right: 0,
     top: 90,
+    borderRadius: 20,
+    margin: '0 auto',
   },
   mercuryTop: {
     position: 'absolute',
-    height: 90,
     width: 10,
-    backgroundColor: '#c0392b',
+    height: 90,
+    left: 0,
+    right: 0,
+    bottom: 30,
     borderRadius: 5,
-    bottom: 40,
+    margin: '0 auto',
   },
   mercuryBottom: {
     position: 'absolute',
-    height: 30,
     width: 30,
-    backgroundColor: '#c0392b',
-    borderRadius: 15,
+    height: 30,
+    left: 0,
+    right: 0,
     top: 95,
+    borderRadius: 15,
+    margin: '0 auto',
   },
   mercuryHighlight: {
     position: 'absolute',
-    height: 5,
     width: 5,
-    backgroundColor: '#fff',
-    borderRadius: 2.5,
-    top: 102.5,
+    height: 5,
     left: 15,
+    right: 0,
+    top: 102.5,
+    borderRadius: 2.5,
+    margin: '0 auto',
   }
 };
 
 const Thermometer = ({
   temperature = 20,
-  base = 0,
-  zones = [10, 24],
+  min = -50,
+  max = 50,
+  zones = [0, 25],
+  glassColor = '#bdc3c7',
+  mercuryPipeColor = '#ecf0f1',
+  lowTemperatureColor = '#3498db',
+  mediumTemperatureColor = '#e67e22',
+  highTemperatureColor = '#c0392b',
+  highlightColor = '#fff',
 }) => {
-  const mercuryColor = { backgroundColor: getMercuryColor(temperature, zones) };
-  const mercuryHeight = { height: base + Math.floor(temperature) }
+  const range = Math.abs(min) + Math.abs(max);
+  const step = Math.floor(100 / range);
+  const mercuryColor = { backgroundColor: getMercuryColor(temperature, zones, [lowTemperatureColor, mediumTemperatureColor, highTemperatureColor]) };
+  const height = range / 2 + Math.floor(temperature) * step
+  const mercuryHeight = { height: height > 100 ? 100 : height };
 
   return (
     <div style={styles.thermometerWrapper}>
-      <div style={styles.thermometerTop}/>
-      <div style={styles.thermometerBottom}/>
-      <div style={styles.mercuryPipe}/>
+      <div style={{ ...styles.thermometerTop, backgroundColor: glassColor }}/>
+      <div style={{ ...styles.thermometerBottom, backgroundColor: glassColor }}/>
+      <div style={{ ...styles.mercuryPipe, backgroundColor: mercuryPipeColor }}/>
       <div style={{ ...styles.mercuryTop, ...mercuryHeight, ...mercuryColor }} />
       <div style={{ ...styles.mercuryBottom, ...mercuryColor }} />
-      <div style={styles.mercuryHighlight} />
+      <div style={{ ...styles.mercuryHighlight, backgroundColor: highlightColor }} />
     </div>
   );
 };
