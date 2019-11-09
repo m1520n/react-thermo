@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Thermometer from '../src/index';
 
@@ -12,10 +12,10 @@ export const thermo = () => (
       temperature={-20}
     />
     <Thermometer
-      temperature={20}
+      temperature={0}
     />
     <Thermometer
-      temperature={35}
+      temperature={50}
     />
   </div>
 );

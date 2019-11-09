@@ -56,6 +56,7 @@ const styles = {
     bottom: 30,
     borderRadius: 5,
     margin: '0 auto',
+    transition: 'height 0.2s linear',
   },
   mercuryBottom: {
     position: 'absolute',
@@ -92,10 +93,11 @@ const Thermometer = ({
   highlightColor = '#fff',
 }) => {
   const range = Math.abs(min) + Math.abs(max);
-  const step = Math.floor(100 / range);
+  const middle = range / 2;
+  const step = Math.ceil(95 / range);
   const mercuryColor = { backgroundColor: getMercuryColor(temperature, zones, [lowTemperatureColor, mediumTemperatureColor, highTemperatureColor]) };
-  const height = range / 2 + Math.floor(temperature) * step
-  const mercuryHeight = { height: height > 100 ? 100 : height };
+  const height = Math.floor(middle + Math.floor(temperature) * step);
+  const mercuryHeight = { height: height > 95 ? 95 : height };
 
   return (
     <div style={styles.thermometerWrapper}>
